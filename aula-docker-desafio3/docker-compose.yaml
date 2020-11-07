@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  rabbit:
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  microservicoa:
+    image: lucasgvarela2/microservico-a
+    ports:
+      - 9090
+  microservicob:
+    depends_on:
+      - "rabbit"
+    image: lucasgvarela2/microservico-b
+    ports:
+      - 9091
+  microservicoc:
+    image: lucasgvarela2/microservico-c
+    ports:
+      - 9092
