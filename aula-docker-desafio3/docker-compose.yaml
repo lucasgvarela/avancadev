@@ -20,8 +20,6 @@ services:
     depends_on:
       - "rabbit"
     image: lucasgvarela2/microservico-b
-    ports:
-      - 9091
   microservicoc:
     image: lucasgvarela2/microservico-c
     ports:
